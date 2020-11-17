@@ -35,7 +35,7 @@
   "add-extensions":{
     "org.freedesktop.Platform.Compat.i386":{
       "directory":"lib/i386-linux-gnu",
-      "version":"19.08"
+      "version":"20.08"
     }
   },
   "sdk-extensions":[
