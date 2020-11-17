@@ -12,7 +12,7 @@
     "--share=network",
     "--allow=multiarch",
     "--device=dri",
-    "--filesystem=~/.firestorm_x64",
+    "--filesystem=~/.firestorm_x64:create",
     "--filesystem=xdg-desktop",
     "--filesystem=xdg-documents",
     "--filesystem=xdg-download",
