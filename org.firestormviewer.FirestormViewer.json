@@ -20,7 +20,8 @@
     "--filesystem=xdg-pictures",
     "--filesystem=xdg-run/app/com.discordapp.Discord:create",
     "--talk-name=org.freedesktop.Notifications",
-    "--own-name=com.secondlife.ViewerAppAPIService"
+    "--own-name=com.secondlife.ViewerAppAPIService",
+    "--env=LD_LIBRARY_PATH=/app/extra/lib/"
   ],
   "cleanup":[
     "/share/man",
