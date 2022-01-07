@@ -1,7 +1,7 @@
 {
     "app-id":"org.firestormviewer.FirestormViewer",
     "runtime":"org.freedesktop.Platform",
-    "runtime-version":"20.08",
+    "runtime-version":"21.08",
     "sdk":"org.freedesktop.Sdk",
     "command":"firestorm-viewer",
     "separate-locales":false,
@@ -37,7 +37,7 @@
     "add-extensions":{
         "org.freedesktop.Platform.Compat.i386":{
             "directory":"lib/i386-linux-gnu",
-            "version":"20.08"
+            "version":"21.08"
         }
     },
     "sdk-extensions":[
