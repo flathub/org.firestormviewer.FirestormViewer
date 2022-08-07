@@ -122,9 +122,9 @@
                 {
                     "type":"extra-data",
                     "filename":"viewer.tar.xz",
-                    "url":"https://downloads.firestormviewer.org/linux/Phoenix_FirestormOS-Releasex64_x86_64_6.5.3.65658.tar.xz",
-                    "sha256":"1992a6583b4dc2b5116ef2256a842f62d588903bf8638b3ac29465e83d8dcdb1",
-                    "size": 165421136
+                    "url":"https://downloads.firestormviewer.org/linux/Phoenix_FirestormOS-Releasex64_x86_64_6.5.6.66221.tar.xz",
+                    "sha256":"a4e710d7b85fc5e9baaa4d5871c77434b78a0c67fddd9166a09f4429b723b984",
+                    "size": 158597972
                 },
                 {
                     "type":"script",
