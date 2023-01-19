@@ -28,8 +28,7 @@
         "/share/man",
         "/share/doc",
         "/share/gtk-doc",
-        "/lib/pkgconfig",
-        "/lib/debug"
+        "/lib/pkgconfig"
     ],
     "build-options":{
         "strip":true
