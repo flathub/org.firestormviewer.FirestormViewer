@@ -22,7 +22,7 @@
         "--talk-name=org.freedesktop.Notifications",
         "--talk-name=org.freedesktop.secrets",
         "--own-name=com.secondlife.ViewerAppAPIService",
-        "--env=LD_LIBRARY_PATH=/app/extra/lib/:/app/lib32/"
+        "--env=LD_LIBRARY_PATH=/app/extra/lib/:/app/lib32/:/app/lib"
     ],
     "cleanup":[
         "/share/man",
@@ -115,6 +115,22 @@
             ]
         },
         {
+            "name":"ubuntu-libcypto",
+            "buildsystem":"simple",
+            "sources":[
+                {
+                    "type":"file",
+                    "url":"http://mirrors.edge.kernel.org/ubuntu/pool/main/libx/libxcrypt/libcrypt1_4.4.27-1_amd64.deb",
+                    "sha256":"3fa566e9f861a08736cbc5a97562d9d6e4f0c00450fbeafcb6d7583423b04a98"
+                }
+            ],
+            "build-commands":[
+                  "ar x libcrypt1_4.4.27-1_amd64.deb",
+                  "tar -xvf data.tar.zst",
+                  "cp lib/x86_64-linux-gnu/* /app/lib/"
+            ]
+        },
+        {
             "name":"firestorm",
             "buildsystem":"simple",
             "sources":[
@@ -169,3 +185,4 @@
         }
     ]
 }
+
