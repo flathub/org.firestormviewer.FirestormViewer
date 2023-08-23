@@ -22,7 +22,7 @@
         "--talk-name=org.freedesktop.Notifications",
         "--talk-name=org.freedesktop.secrets",
         "--own-name=com.secondlife.ViewerAppAPIService",
-        "--env=LD_LIBRARY_PATH=/app/extra/lib/:/app/lib32/"
+        "--env=LD_LIBRARY_PATH=/app/extra/lib/:/app/lib32/:/app/lib"
     ],
     "cleanup":[
         "/share/man",
@@ -115,15 +115,31 @@
             ]
         },
         {
+            "name":"ubuntu-libcypto",
+            "buildsystem":"simple",
+            "sources":[
+                {
+                    "type":"file",
+                    "url":"http://mirrors.edge.kernel.org/ubuntu/pool/main/libx/libxcrypt/libcrypt1_4.4.27-1_amd64.deb",
+                    "sha256":"3fa566e9f861a08736cbc5a97562d9d6e4f0c00450fbeafcb6d7583423b04a98"
+                }
+            ],
+            "build-commands":[
+                  "ar x libcrypt1_4.4.27-1_amd64.deb",
+                  "tar -xvf data.tar.zst",
+                  "cp lib/x86_64-linux-gnu/* /app/lib/"
+            ]
+        },
+        {
             "name":"firestorm",
             "buildsystem":"simple",
             "sources":[
                 {
                     "type":"extra-data",
                     "filename":"viewer.tar.xz",
-                    "url":"https://downloads.firestormviewer.org/linux/Phoenix-FirestormOS-Releasex64-6-6-8-68380.tar.xz",
-                    "sha256":"ff389b755322df7f5c970e5b4b25258d58210f3d7d0dfdf303cbd29122ba47b8",
-                    "size": 157809668
+                    "url":"https://downloads.firestormviewer.org/linux/Phoenix-FirestormOS-Releasex64-6-6-14-69596.tar.xz",
+                    "sha256":"6e8f901b975a16ec386f74526d8e23431643cadd8bbe1f08f4b2f6544dced42d",
+                    "size": 162431968
                 },
                 {
                     "type":"script",
@@ -169,3 +185,4 @@
         }
     ]
 }
+
