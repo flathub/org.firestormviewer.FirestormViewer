@@ -8,7 +8,6 @@
   <developer id="org.firestormviewer">
     <name>Firestorm Project</name>
   </developer>
-  <url type="homepage">https://www.firestormviewer.org/</url>
   <summary>Client for accessing 3D virtual worlds</summary>
   <description>
     <p>Firestorm is to Virtual Worlds what Firefox and Google Chrome is to the Internet. This is the Second Life(tm) version of the Firestorm Viewer.</p>
