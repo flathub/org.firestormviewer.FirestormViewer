@@ -24,6 +24,9 @@ export SDL_VIDEO_X11_DGAMOUSE=0
 # This makes the tmpdir something the host can resolve, this is only used for editing scripts in an external editor.
 export TMPDIR=$XDG_CACHE_HOME/tmp
 
+## Enable nVidia threaded optimizations, this seems to be a free performance gain - see https://github.com/FirestormViewer/phoenix-firestorm/commit/ccaab5c0b8a4c506df566a195bc19567404b3589
+export __GL_THREADED_OPTIMIZATIONS=1
+
 cd $APPPATH
 
 if [ -n "$1" ]; then

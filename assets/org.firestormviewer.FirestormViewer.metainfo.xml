@@ -5,7 +5,9 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>LGPL-2.1</project_license>
   <name>Firestorm Viewer</name>
-  <url type="homepage">https://www.firestormviewer.org/</url>
+  <developer id="org.firestormviewer">
+    <name>Firestorm Project</name>
+  </developer>
   <summary>Client for accessing 3D virtual worlds</summary>
   <description>
     <p>Firestorm is to Virtual Worlds what Firefox and Google Chrome is to the Internet. This is the Second Life(tm) version of the Firestorm Viewer.</p>
