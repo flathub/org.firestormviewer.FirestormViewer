@@ -1,7 +1,7 @@
 {
     "app-id":"org.firestormviewer.FirestormViewer",
     "runtime":"org.freedesktop.Platform",
-    "runtime-version":"22.08",
+    "runtime-version":"23.08",
     "sdk":"org.freedesktop.Sdk",
     "command":"firestorm-viewer",
     "separate-locales":false,
@@ -27,16 +27,16 @@
     "cleanup":[
         "/share/man",
         "/share/doc",
-        "/share/gtk-doc",
-        "/lib/pkgconfig"
+        "/share/gtk-doc"
     ],
+    "writable-sdk": true,
     "build-options":{
         "strip":true
     },
     "add-extensions":{
         "org.freedesktop.Platform.Compat.i386":{
             "directory":"lib/i386-linux-gnu",
-            "version":"22.08"
+            "version":"23.08"
         }
     },
     "sdk-extensions":[
@@ -114,6 +114,18 @@
                 }
             ]
         },
+        "pypi-dependencies.json",
+        {
+          "name": "glu",
+          "buildsystem": "meson",
+          "sources": [
+            {
+              "type": "archive",
+              "url": "https://archive.mesa3d.org/glu/glu-9.0.3.tar.xz",
+              "sha256": "bd43fe12f374b1192eb15fe20e45ff456b9bc26ab57f0eee919f96ca0f8a330f"
+            }
+          ]
+        },
         {
             "name":"ubuntu-libcypto",
             "buildsystem":"simple",
@@ -132,55 +144,31 @@
         },
         {
             "name":"firestorm",
+            "build-options": {
+		        "build-args": [ "--share=network" ]
+	        },
             "buildsystem":"simple",
             "sources":[
                 {
-                    "type":"extra-data",
-                    "filename":"viewer.tar.xz",
-                    "url":"https://downloads.firestormviewer.org/release/linux/Phoenix-FirestormOS-Releasex64-6-6-17-70368.tar.xz",
-                    "sha256":"1adeb5dc1a341ecd1fe858f4fa9e09027c1996f0f8d00c29f3f2d62aeff04dee",
-                    "size": 164189092
+                    "type":"git",
+                    "url":"https://github.com/FirestormViewer/fs-build-variables.git",
+                    "branch": "master",
+                    "dest": "fs-build-variables"
                 },
                 {
-                    "type":"script",
-                    "dest-filename":"apply_extra",
-                    "commands":[
-                        "tar -xf viewer.tar.xz --strip 1 --no-same-owner",
-                        "rm viewer.tar.xz",
-                        "cp /app/etc/launch_url.sh etc/"
-                    ]
-                },
-                {
-                    "type":"file",
-                    "path":"assets/firestorm-viewer"
-                },
-                {
-                    "type":"file",
-                    "path":"assets/launch_url.sh"
-                },
-                {
-                    "type":"file",
-                    "path":"assets/org.firestormviewer.FirestormViewer.desktop"
-                },
-                {
-                    "type":"file",
-                    "path":"assets/org.firestormviewer.FirestormViewer.metainfo.xml"
-                },
-                {
-                    "type":"file",
-                    "url":"https://vcs.firestormviewer.org/phoenix-firestorm-lgpl/raw/5e2050564bd3730f0ce7843860afdb25da3d2346/indra/newview/res/firestorm_icon.png",
-                    "sha256":"f51c4c1609d6fe1a75914f3644888816525524e641c2f2821436993921800390",
-                    "dest-filename":"org.firestormviewer.FirestormViewer.png"
+                    "type":"git",
+                    "url":"https://github.com/FirestormViewer/phoenix-firestorm.git",
+                    "branch":"master",
+                    "dest": "phoenix-firestorm"
                 }
             ],
             "build-commands":[
-                "install apply_extra /app/bin/",
-                "install launch_url.sh /app/etc/",
-                "install -Dm755 firestorm-viewer $FLATPAK_DEST/bin/",
-                "install -Dm644 $FLATPAK_ID.desktop $FLATPAK_DEST/share/applications/$FLATPAK_ID.desktop",
-                "install -Dm644 $FLATPAK_ID.png $FLATPAK_DEST/share/icons/hicolor/512x512/apps/$FLATPAK_ID.png",
-                "install -Dm644 $FLATPAK_ID.metainfo.xml $FLATPAK_DEST/share/metainfo/$FLATPAK_ID.metainfo.xml",
-                "mkdir $FLATPAK_DEST/lib/i386-linux-gnu"
+		"rm /etc/resolv.conf",
+		"echo 'nameserver 8.8.8.8' > /etc/resolv.conf",
+                "cp -v /app/include/GL/glu.h /usr/include/GL/glu.h",
+                "cp -v /app/lib/pkgconfig/glu.pc /usr/lib/x86_64-linux-gnu/pkgconfig/glu.pc",
+        	"cp -v /app/lib/libGLU* /usr/lib/x86_64-linux-gnu/",
+                "cd phoenix-firestorm && AUTOBUILD_VARIABLES_FILE=/run/build/firestorm/fs-build-variables/variables autobuild configure -A 64 -c ReleaseFS_open && AUTOBUILD_VARIABLES_FILE=/run/build/firestorm/fs-build-variables/variables autobuild build -A 64 -c ReleaseFS_open"
             ]
         }
     ]

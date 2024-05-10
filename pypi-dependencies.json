@@ -1,0 +1,99 @@
+{
+    "name": "pypi-dependencies",
+    "buildsystem": "simple",
+    "build-commands": [],
+    "modules": [
+        {
+            "name": "python3-llbase",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"llbase\" --no-build-isolation"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/ba/06/a07f096c664aeb9f01624f858c3add0a4e913d6c96257acb4fce61e7de14/certifi-2024.2.2-py3-none-any.whl",
+                    "sha256": "dc383c07b76109f368f6106eee2b593b04a011ea4d55f652c6ca24a754d1cdd1"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/63/09/c1bc53dab74b1816a00d8d030de5bf98f724c52c1635e07681d312f20be8/charset-normalizer-3.3.2.tar.gz",
+                    "sha256": "f30c3cb33b24454a82faecaf01b19c18562b1e89558fb6c56de4d9118a032fd5"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/e5/3e/741d8c82801c347547f8a2a06aa57dbb1992be9e948df2ea0eda2c8b79e8/idna-3.7-py3-none-any.whl",
+                    "sha256": "82fee1fc78add43492d3a1898bfa6d8a904cc97d8427f683ed8e798d07761aa0"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/8b/8d/925b7ab9403060c886744858452dc4b048bfde1365c5ed0cd165f3d980f7/llbase-1.3.1-py3-none-any.whl",
+                    "sha256": "bb2f4a808439e788c99de0e1760608a840d7698ed740290151815306a6faef41"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/85/61/9cee6739a249bfd81457213594a0cc19cbf7bb9df24d324af01004df4816/llsd-1.2.4-py3-none-any.whl",
+                    "sha256": "69ebe8ee52c18315ff9a7249ff9b0890a03dcf8bba1718a9ce47e2057faf38aa"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/70/8e/0e2d847013cb52cd35b38c009bb167a1a26b2ce6cd6965bf26b47bc0bf44/requests-2.31.0-py3-none-any.whl",
+                    "sha256": "58cd2187c01e70e6e26505bca751777aa9f2ee0b7f4300988b709f44e013003f"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/a2/73/a68704750a7679d0b6d3ad7aa8d4da8e14e151ae82e6fee774e6e0d05ec8/urllib3-2.2.1-py3-none-any.whl",
+                    "sha256": "450b20ec296a467077128bff42b73080516e71b56ff59a60a02bef2232c4fa9d"
+                }
+            ]
+        },
+        {
+            "name": "python3-autobuild",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"autobuild\" --no-build-isolation"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/e5/e0/bf7429225e2a06fd12eb7307426a7fb7e171697aa0fc5f8c274254e29567/autobuild-3.9.5-py3-none-any.whl",
+                    "sha256": "425fbc56781a918a94cf19928073d22e84dfca2a6813435da88ecb75f6c2b742"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/85/61/9cee6739a249bfd81457213594a0cc19cbf7bb9df24d324af01004df4816/llsd-1.2.4-py3-none-any.whl",
+                    "sha256": "69ebe8ee52c18315ff9a7249ff9b0890a03dcf8bba1718a9ce47e2057faf38aa"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/7f/90/c9b51f3cdff89cd8f93382060330f43d1af098a6624cff439e700791e922/pydot-2.0.0-py3-none-any.whl",
+                    "sha256": "408a47913ea7bd5d2d34b274144880c1310c4aee901f353cf21fe2e526a4ea28"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/9d/ea/6d76df31432a0e6fdf81681a895f009a4bb47b3c39036db3e1b528191d52/pyparsing-3.1.2-py3-none-any.whl",
+                    "sha256": "f9db75911801ed778fe61bb643079ff86601aca99fcae6345aa67292038fb742"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/0f/ae/dc18432a364b34e7adbc0edc32de44dd5310184112945552c106ab913f39/pyzstd-0.15.10.tar.gz",
+                    "sha256": "83603a97fdbcf2139f475c940789f09e32703f931f29f4a8ddf3551e6700108b"
+                }
+            ]
+        },
+        {
+            "name": "python3-llsd",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"llsd\" --no-build-isolation"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/85/61/9cee6739a249bfd81457213594a0cc19cbf7bb9df24d324af01004df4816/llsd-1.2.4-py3-none-any.whl",
+                    "sha256": "69ebe8ee52c18315ff9a7249ff9b0890a03dcf8bba1718a9ce47e2057faf38aa"
+                }
+            ]
+        }
+    ]
+}
