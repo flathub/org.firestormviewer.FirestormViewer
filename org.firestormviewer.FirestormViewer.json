@@ -152,13 +152,13 @@
                 {
                     "type":"git",
                     "url":"https://github.com/FirestormViewer/fs-build-variables.git",
-                    "branch": "master",
+                    "commit": "c57be16efb2b48d9e117c7449fc105c7f9da16d0",
                     "dest": "fs-build-variables"
                 },
                 {
                     "type":"git",
                     "url":"https://github.com/FirestormViewer/phoenix-firestorm.git",
-                    "branch":"master",
+                    "commit":"f8664080696586a524193445f9452ac5c6d1f3fd",
                     "dest": "phoenix-firestorm"
                 }
             ],
