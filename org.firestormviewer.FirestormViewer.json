@@ -1,7 +1,7 @@
 {
     "app-id":"org.firestormviewer.FirestormViewer",
     "runtime":"org.freedesktop.Platform",
-    "runtime-version":"22.08",
+    "runtime-version":"23.08",
     "sdk":"org.freedesktop.Sdk",
     "command":"firestorm-viewer",
     "separate-locales":false,
@@ -22,27 +22,17 @@
         "--talk-name=org.freedesktop.Notifications",
         "--talk-name=org.freedesktop.secrets",
         "--own-name=com.secondlife.ViewerAppAPIService",
-        "--env=LD_LIBRARY_PATH=/app/extra/lib/:/app/lib32/:/app/lib"
+        "--env=LD_LIBRARY_PATH=/app/bin/lib/:/app/lib"
     ],
     "cleanup":[
         "/share/man",
         "/share/doc",
-        "/share/gtk-doc",
-        "/lib/pkgconfig"
+        "/share/gtk-doc"
     ],
+    "writable-sdk": true,
     "build-options":{
         "strip":true
     },
-    "add-extensions":{
-        "org.freedesktop.Platform.Compat.i386":{
-            "directory":"lib/i386-linux-gnu",
-            "version":"22.08"
-        }
-    },
-    "sdk-extensions":[
-        "org.freedesktop.Sdk.Compat.i386",
-        "org.freedesktop.Sdk.Extension.toolchain-i386"
-    ],
     "modules":[
         "shared-modules/glu/glu-9.json",
         "shared-modules/gtk2/gtk2.json",
@@ -69,30 +59,6 @@
             ]
         },
         {
-            "name":"libidn",
-            "sources":[
-                {
-                    "type":"archive",
-                    "url":"https://ftp.gnu.org/gnu/libidn/libidn-1.34.tar.gz",
-                    "sha256":"3719e2975f2fb28605df3479c380af2cf4ab4e919e1506527e4c7670afff6e3c"
-                }
-            ],
-            "build-options":{
-                "arch":{
-                    "x86_64":{
-                        "prepend-pkg-config-path":"/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
-                        "ldflags":"-L/app/lib32",
-                        "append-path":"/usr/lib/sdk/toolchain-i386/bin",
-                        "env":{
-                            "CC":"i686-unknown-linux-gnu-gcc",
-                            "CXX":"i686-unknown-linux-gnu-g++"
-                        },
-                        "libdir":"/app/lib32"
-                    }
-                }
-            }
-        },
-        {
             "name":"libgnome-keyring",
             "config-opts":[
                 "--disable-static",
@@ -114,6 +80,7 @@
                 }
             ]
         },
+        "pypi-dependencies.json",
         {
             "name":"ubuntu-libcypto",
             "buildsystem":"simple",
@@ -135,28 +102,270 @@
             "buildsystem":"simple",
             "sources":[
                 {
-                    "type":"extra-data",
-                    "filename":"viewer.tar.xz",
-                    "url":"https://downloads.firestormviewer.org/release/linux/Phoenix-FirestormOS-Releasex64-6-6-17-70368.tar.xz",
-                    "sha256":"1adeb5dc1a341ecd1fe858f4fa9e09027c1996f0f8d00c29f3f2d62aeff04dee",
-                    "size": 164189092
+                    "type":"git",
+                    "url":"https://github.com/FirestormViewer/fs-build-variables.git",
+                    "commit": "c57be16efb2b48d9e117c7449fc105c7f9da16d0",
+                    "dest": "fs-build-variables"
                 },
                 {
-                    "type":"script",
-                    "dest-filename":"apply_extra",
-                    "commands":[
-                        "tar -xf viewer.tar.xz --strip 1 --no-same-owner",
-                        "rm viewer.tar.xz",
-                        "cp /app/etc/launch_url.sh etc/"
-                    ]
+                    "type":"git",
+                    "url":"https://github.com/FirestormViewer/phoenix-firestorm.git",
+                    "commit":"f8664080696586a524193445f9452ac5c6d1f3fd",
+                    "dest": "phoenix-firestorm"
+                },
+                {
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-ogg_vorbis/releases/download/v1.3.3-1.3.6-881f65e/ogg_vorbis-1.3.3-1.3.6.881f65e-linux64-881f65e.tar.zst",
+                    "sha1":"90052be851c4fcecc35d8424b4f31352de14ab2f"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-openal-soft/releases/download/v1.23.1-18e315c/openal-1.23.1-linux64-18e315c.tar.zst",
+                    "sha1":"e0fbc4874acc4167a6e2b6489fbb8258d98fd665"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-apr_suite/releases/download/v1.7.2-c5f3347/apr_suite-1.7.2-c5f3347-linux64-c5f3347.tar.zst",
+                    "sha1":"95137cd3f4d6ffa5bd7a00d7d91bd8fc272b7ca2"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-boost/releases/download/v1.81-3d0d7fc/boost-1.81-linux64-3d0d7fc.tar.zst",
+                    "sha1":"a3bfbdba7e1977e7e65266ec654990bb13994bd3"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-expat/releases/download/v2.1.1.1f36d02/expat-2.1.1.1f36d02-linux64-1f36d02.tar.zst",
+                    "sha1":"4cd82e2dec06ddff19e9b3dc0254f2593ec80452"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-xxhash/releases/download/v0.8.1-69ff69a/xxhash-0.8.1-69ff69a-common-69ff69a.tar.zst",
+                    "sha1":"1a73c476b371b62066d1c3eced249660e9467e53"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-zlib-ng/releases/download/v1.2.11.zlib-ng.32fd361/zlib_ng-1.2.11.zlib-ng.32fd361-linux64-32fd361.tar.zst",
+                    "sha1":"fba88375e12454ae19f4528e11ffc7ddf7d879ec"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-jsoncpp/releases/download/v0.5.0-cc63e92/jsoncpp-0.5.0.cc63e92-linux64-cc63e92.tar.zst",
+                    "sha1":"66dce1d0c2fc19dff13db279d973773fc7e2aa13"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-xmlrpc-epi/releases/download/v0.54.1.8a05acf/xmlrpc_epi-0.54.1.8a05acf-linux64-8a05acf.tar.zst",
+                    "sha1":"ad0c8b41ee4b4de216382bec46ee1c25962a3f12"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-glh_linear/releases/download/v1.0.1-dev4-984c397/glh_linear-1.0.1-dev4-common-984c397.tar.zst",
+                    "sha1":"066625e7aa7f697a4b6cd461aad960c57181011f"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-glext/releases/download/v69/glext-68-common-685b36e.tar.zst",
+                    "sha1":"7cc58b3acb230a7e65ea5f0ff800be393eb4aa1b"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-sdl2/releases/download/v2.28.0-1dc88c1/SDL2-2.28.0-linux64-1dc88c1.tar.zst",
+                    "sha1":"0f6fbb52ffea1a55bf76a84a6688079f95674cbd"
+                },
+         	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-libpng/releases/download/v1.16.38-d427738/libpng-1.6.38-8318603154-linux64-8318603154.tar.zst",
+                    "sha1":"39d5779fd79e23da16a7b5bf608008999004c828"
+                },
+         	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-nghttp2/releases/download/v1.40.0.b1526c6/nghttp2-1.40.0.b1526c6-linux64-b1526c6.tar.zst",
+                    "sha1":"5798b5f6c8579ad44f211a873c072ee8d3fd8c93"
+                },
+         	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-curl/releases/download/v7.54.1-513145c/curl-7.54.1-513145c-linux64-513145c.tar.zst",
+                    "sha1":"7bb9bbadb44dd7490c3e6804395df01ab800bc18"
+                },
+                {
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-openssl/releases/download/v1.1.1q.de53f55/openssl-1.1.1q.de53f55-linux64-de53f55.tar.zst",
+                    "sha1":"5f6953db991ef6badb0525ecc98daf28d368e9e7"
+                },
+                {
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-icu4c/releases/download/v4.8.1-8bff176/icu4c-4.8.1-linux64-8512575562.tar.zst",
+                    "sha1":"bdd74e2a02c7b78fded9222140d197da4af9904e"
+                },
+                {
+                    "type":"file",
+                    "url":"https://3p.firestormviewer.org/dictionaries-2.46203-common-46203.tar.bz2",
+                    "sha1":"44a489b778aebe8ac2435ab6525452dd68d3f024"
+                },
+                {
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-uriparser/releases/download/v0.9.4-42d7a6d/uriparser-0.9.4-linux64-42d7a6d.tar.zst",
+                    "sha1":"df66574b3d70f49570709eccd8a1cdeee996cb43"
+                },
+                {
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-tut/releases/download/v2008.11.30-409bce5/tut-2008.11.30-common-409bce5.tar.zst",
+                    "sha1":"9f0bf4545f08df5381e0f39ccce3a57c6ec4b0f4"
+                },
+                {
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-jpeglib/releases/download/v8c.7846234/jpeglib-8c.7846234-linux64-7846234.tar.zst",
+                    "sha1":"b4b2278bd2fcae85619e2145a243cca388d760d7"
+                },
+                {
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-openjpeg/releases/download/v2.5.0.ea12248/openjpeg-2.5.0.ea12248-linux64-ea12248.tar.zst",
+                    "sha1":"8c277dde6076fb682cb07264dd70f6f2298b633f"
+                },
+                {
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-meshoptimizer/releases/download/v160-4f905dd/meshoptimizer-160-linux64-4f905dd.tar.zst",
+                    "sha1":"6f4509dca9e32e3b4f9c4b13d875ce0e24340efc"
+                },
+                {
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-mikktspace/releases/download/v1-5cee1f4/mikktspace-1-linux64-5cee1f4.tar.zst",
+                    "sha1":"edc9782bf209e17ad1845498b42f16d733582082"
+                },
+                {
+                    "type":"file",
+                    "url":"https://3p.firestormviewer.org/ndPhysicsStub-1.202321033-linux64-202321033.tar.bz2",
+                    "sha1":"c58a6395f30585e1df168ba83325acbedff12bec"
+                },
+                {
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-colladadom/releases/download/v2.3-2f532e1/colladadom-2.3.2f532e1-linux64-2f532e1.tar.zst",
+                    "sha1":"cab0237b5194254c0c0ff6bf77bc6a2f946d4f57"
+                },
+                {
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-minizip-ng/releases/download/v3.0.2.3e9876e/minizip_ng-3.0.2.3e9876e-linux64-3e9876e.tar.zst",
+                    "sha1":"d4f35ebcea53ab6e9f2e6cbc0d680b10d10b9c53"
+                },
+                {
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-pcre/releases/download/v8.35-3c0eb51/pcre-8.35.3c0eb51-linux64-3c0eb51.tar.zst",
+                    "sha1":"3a722c508a9278a49317e3f749f3256768f1c50b"
+                },
+                {
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-libxml2/releases/download/v2.9.4-2db4418/libxml2-2.9.4.2db4418-linux64-2db4418.tar.zst",
+                    "sha1":"fda5d399c21c3ad29a78f29599523ca4ecf76bd2"
+                },
+                {
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-tinygltf/releases/download/v2.5.0-1ae57fd/tinygltf-v2.5.0-common-1ae57fd.tar.zst",
+                    "sha1":"2c47ae2d0c38c86b8c2db8d9317f0ab15edfc74f"
+                },
+                {
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-freetype/releases/download/v2.12.1-r1/freetype-2.12.1.8503093630-linux64-8503093630.tar.zst",
+                    "sha1":"07a38133c008ce6f728d652d00a756bea3a70288"
+                },
+                {
+                    "type":"file",
+                    "url":"https://3p.firestormviewer.org/glib-2.64.6.240620740-linux64-240620740.tar.zst",
+                    "sha1":"1e74b8cc3694150a7751aeb12f3456d414412c0e"
+                },
+                {
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-fltk/releases/download/v1.3.9-r1/fltk-1.3.9.8556992788-linux64-8556992788.tar.zst",
+                    "sha1":"691fef2ddd57d7b6c26e87fc82d9ace3f54e078c"
+                },
+                {
+                    "type":"file",
+                    "url":"https://3p.firestormviewer.org/libuuid-1.6.2-linux64-180841554.tar.bz2",
+                    "sha1":"447d0326cb0343611efdeb65e53c66550395db65"
+                },
+                {
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-libhunspell/releases/download/v1.3.2.650fb94/libhunspell-1.3.2.650fb94-linux64-650fb94.tar.zst",
+                    "sha1":"6413d3bd4cd50c2a6b7f949eb4bd6f0c94feb984"
+                },
+                {
+                    "type":"file",
+                    "url":"https://3p.firestormviewer.org/slvoice-3.2-linux64-222532329.tar.bz2",
+                    "sha1":"d76a0e9f9ceff3344ff30c8e445c3a46371b74f8"
+                },
+                {
+                    "type":"file",
+                    "url":"https://automated-builds-secondlife-com.s3.amazonaws.com/ct2/115397/993664/nanosvg-2022.09.27-linux-580337.tar.bz2",
+                    "sha1":"77f4c20bfa4feddeb18dfbf3ce26d62987af52c3"
+                },
+                {
+                    "type":"file",
+                    "url":"https://3p.firestormviewer.org/viewer_fonts-1.240681616-common-240681616.tar.bz2",
+                    "sha1":"899f2affa8eba540ae19e52d8bf1ab9f71d5b909"
+                },
+                {
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-emoji-shortcodes/releases/download/v6.1.0.5413f58/emoji_shortcodes-6.1.0.5413f58-linux64-5413f58.tar.zst",
+                    "sha1":"5b957aa7f353b10ae17b7119e5b3668f48a35325"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://3p.firestormviewer.org/gstreamer10-1.6.3.201605191852-linux-201605191852.tar.bz2",
+                    "sha1":"ce0b9ae4589d9ce422a4628693e7a482d8bcd0c1"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://3p.firestormviewer.org/dullahan-1.14.0.202403161609_118.6.8_ge44bee1_chromium-118.0.5993.117-linux64-240760509.tar.zst",
+                    "sha1":"2845d791c0f00392ba1573bc645a0fc8a7fd37ae"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-cubemap_to_eqr_js/releases/download/v1.1.0-cb8785a/cubemaptoequirectangular-1.1.0-linux64-cb8785a.tar.zst",
+                    "sha1":"aea0bed0f953a9371b9091f09230b41597f891f7"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://3p.firestormviewer.org/glod-1.0pre3.180990827-linux64-180990827.tar.bz2",
+                    "sha1":"1370e28e48be95a0b4385481fc43a671536964fb"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-jpeg_encoder_js/releases/download/v1.0-790015a/jpegencoderbasic-1.0-linux64-790015a.tar.zst",
+                    "sha1":"23daab838f4b8f92e5dc1a2f6c568cb7b0cb43b7"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/llca/releases/download/v202402012004.0-0f5d9c3/llca-202402012004.0-common-0f5d9c3.tar.zst",
+                    "sha1":"a9503e1b4e1d9790cf29d18a3d9ab39e6a515679"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-open-libndofdev/releases/download/v1.14-r1/open_libndofdev-0.14.8503290964-linux64-8503290964.tar.zst",
+                    "sha1":"2d20683554f0b00234bbb84d0ce7ac1be1ad70aa"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-three_js/releases/download/v0.132.2-5da28d9/threejs-0.132.2-common-8454371083.tar.zst",
+                    "sha1":"982c0fa427458082ea9e3cb9603904210732b64e"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://github.com/secondlife/3p-vulkan-gltf-pbr/releases/download/v1.0.0-d7c372f/vulkan_gltf-1.0.0-common-d7c372f.tar.zst",
+                    "sha1":"8e365eff8dcace48d91e2530f8b13e420849aefc"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://3p.firestormviewer.org/jemalloc-5.3.0-linux64-222631217.tar.bz2",
+                    "sha1":"827989715a517b4c73f198a0e25164e4e6ff7517"
+                },
+        	{
+                    "type":"file",
+                    "url":"https://3p.firestormviewer.org/discord_rpc-3.4.0-linux64-192540843.tar.bz2",
+                    "sha1":"fc98cbd94c76f41b2ceedf1c25972d3bf7f24dda"
                 },
                 {
                     "type":"file",
                     "path":"assets/firestorm-viewer"
-                },
-                {
-                    "type":"file",
-                    "path":"assets/launch_url.sh"
                 },
                 {
                     "type":"file",
@@ -165,22 +374,18 @@
                 {
                     "type":"file",
                     "path":"assets/org.firestormviewer.FirestormViewer.metainfo.xml"
-                },
-                {
-                    "type":"file",
-                    "url":"https://vcs.firestormviewer.org/phoenix-firestorm-lgpl/raw/5e2050564bd3730f0ce7843860afdb25da3d2346/indra/newview/res/firestorm_icon.png",
-                    "sha256":"f51c4c1609d6fe1a75914f3644888816525524e641c2f2821436993921800390",
-                    "dest-filename":"org.firestormviewer.FirestormViewer.png"
                 }
             ],
             "build-commands":[
-                "install apply_extra /app/bin/",
-                "install launch_url.sh /app/etc/",
-                "install -Dm755 firestorm-viewer $FLATPAK_DEST/bin/",
+                "cp -v /app/include/GL/glu.h /usr/include/GL/glu.h",
+                "cp -v /app/lib/pkgconfig/glu.pc /usr/lib/x86_64-linux-gnu/pkgconfig/glu.pc",
+        	"cp -v /app/lib/libGLU* /usr/lib/x86_64-linux-gnu/",
+                "cd phoenix-firestorm && AUTOBUILD_INSTALLABLE_CACHE=`pwd`/../ XZ_DEFAULTS='-T0' AUTOBUILD_VARIABLES_FILE=/run/build/firestorm/fs-build-variables/variables autobuild build -A 64 -c ReleaseFS_open -- --clean -DUSE_AVX2_OPTIMIZATION:BOOL=ON",
+                "tar -xvf /run/build/firestorm/phoenix-firestorm/build-linux-x86_64/newview/Phoenix*.tar.* -C /app/bin --strip 1 --no-same-owner",
+        	"install -Dm755 firestorm-viewer $FLATPAK_DEST/bin/",
                 "install -Dm644 $FLATPAK_ID.desktop $FLATPAK_DEST/share/applications/$FLATPAK_ID.desktop",
-                "install -Dm644 $FLATPAK_ID.png $FLATPAK_DEST/share/icons/hicolor/512x512/apps/$FLATPAK_ID.png",
-                "install -Dm644 $FLATPAK_ID.metainfo.xml $FLATPAK_DEST/share/metainfo/$FLATPAK_ID.metainfo.xml",
-                "mkdir $FLATPAK_DEST/lib/i386-linux-gnu"
+                "install -Dm644 phoenix-firestorm/indra/newview/icons/release-os/firestorm_512.png $FLATPAK_DEST/share/icons/hicolor/512x512/apps/$FLATPAK_ID.png",
+                "install -Dm644 $FLATPAK_ID.metainfo.xml $FLATPAK_DEST/share/metainfo/$FLATPAK_ID.metainfo.xml"
             ]
         }
     ]
