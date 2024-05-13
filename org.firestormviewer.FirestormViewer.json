@@ -22,7 +22,7 @@
         "--talk-name=org.freedesktop.Notifications",
         "--talk-name=org.freedesktop.secrets",
         "--own-name=com.secondlife.ViewerAppAPIService",
-        "--env=LD_LIBRARY_PATH=/app/extra/lib/:/app/lib32/:/app/lib"
+        "--env=LD_LIBRARY_PATH=/app/bin/lib/:/app/lib"
     ],
     "cleanup":[
         "/share/man",
@@ -33,16 +33,6 @@
     "build-options":{
         "strip":true
     },
-    "add-extensions":{
-        "org.freedesktop.Platform.Compat.i386":{
-            "directory":"lib/i386-linux-gnu",
-            "version":"23.08"
-        }
-    },
-    "sdk-extensions":[
-        "org.freedesktop.Sdk.Compat.i386",
-        "org.freedesktop.Sdk.Extension.toolchain-i386"
-    ],
     "modules":[
         "shared-modules/glu/glu-9.json",
         "shared-modules/gtk2/gtk2.json",
@@ -67,30 +57,6 @@
                     "sha256":"ee8f3ef946156ad3406fdf45feedbdcd932dbd211ab4f16f75eba4f36fb2f6c0"
                 }
             ]
-        },
-        {
-            "name":"libidn",
-            "sources":[
-                {
-                    "type":"archive",
-                    "url":"https://ftp.gnu.org/gnu/libidn/libidn-1.34.tar.gz",
-                    "sha256":"3719e2975f2fb28605df3479c380af2cf4ab4e919e1506527e4c7670afff6e3c"
-                }
-            ],
-            "build-options":{
-                "arch":{
-                    "x86_64":{
-                        "prepend-pkg-config-path":"/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
-                        "ldflags":"-L/app/lib32",
-                        "append-path":"/usr/lib/sdk/toolchain-i386/bin",
-                        "env":{
-                            "CC":"i686-unknown-linux-gnu-gcc",
-                            "CXX":"i686-unknown-linux-gnu-g++"
-                        },
-                        "libdir":"/app/lib32"
-                    }
-                }
-            }
         },
         {
             "name":"libgnome-keyring",
@@ -396,6 +362,18 @@
                     "type":"file",
                     "url":"https://3p.firestormviewer.org/discord_rpc-3.4.0-linux64-192540843.tar.bz2",
                     "sha1":"fc98cbd94c76f41b2ceedf1c25972d3bf7f24dda"
+                },
+                {
+                    "type":"file",
+                    "path":"assets/firestorm-viewer"
+                },
+                {
+                    "type":"file",
+                    "path":"assets/org.firestormviewer.FirestormViewer.desktop"
+                },
+                {
+                    "type":"file",
+                    "path":"assets/org.firestormviewer.FirestormViewer.metainfo.xml"
                 }
             ],
             "build-commands":[
@@ -403,7 +381,11 @@
                 "cp -v /app/lib/pkgconfig/glu.pc /usr/lib/x86_64-linux-gnu/pkgconfig/glu.pc",
         	"cp -v /app/lib/libGLU* /usr/lib/x86_64-linux-gnu/",
                 "cd phoenix-firestorm && AUTOBUILD_INSTALLABLE_CACHE=`pwd`/../ XZ_DEFAULTS='-T0' AUTOBUILD_VARIABLES_FILE=/run/build/firestorm/fs-build-variables/variables autobuild build -A 64 -c ReleaseFS_open -- --clean -DUSE_AVX2_OPTIMIZATION:BOOL=ON",
-                "tar -xvf /run/build/firestorm/phoenix-firestorm/build-linux-x86_64/newview/Phoenix*.tar.* -C /app/bin --strip 1 --no-same-owner"
+                "tar -xvf /run/build/firestorm/phoenix-firestorm/build-linux-x86_64/newview/Phoenix*.tar.* -C /app/bin --strip 1 --no-same-owner",
+        	"install -Dm755 firestorm-viewer $FLATPAK_DEST/bin/",
+                "install -Dm644 $FLATPAK_ID.desktop $FLATPAK_DEST/share/applications/$FLATPAK_ID.desktop",
+                "install -Dm644 phoenix-firestorm/indra/newview/icons/release-os/firestorm_512.png $FLATPAK_DEST/share/icons/hicolor/512x512/apps/$FLATPAK_ID.png",
+                "install -Dm644 $FLATPAK_ID.metainfo.xml $FLATPAK_DEST/share/metainfo/$FLATPAK_ID.metainfo.xml"
             ]
         }
     ]
