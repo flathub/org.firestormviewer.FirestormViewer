@@ -1,7 +1,7 @@
 {
     "app-id":"org.firestormviewer.FirestormViewer",
     "runtime":"org.freedesktop.Platform",
-    "runtime-version":"22.08",
+    "runtime-version":"23.08",
     "sdk":"org.freedesktop.Sdk",
     "command":"firestorm-viewer",
     "separate-locales":false,
@@ -36,7 +36,7 @@
     "add-extensions":{
         "org.freedesktop.Platform.Compat.i386":{
             "directory":"lib/i386-linux-gnu",
-            "version":"22.08"
+            "version":"23.08"
         }
     },
     "sdk-extensions":[
@@ -137,9 +137,9 @@
                 {
                     "type":"extra-data",
                     "filename":"viewer.tar.xz",
-                    "url":"https://downloads.firestormviewer.org/release/linux/Phoenix-FirestormOS-Releasex64-6-6-17-70368.tar.xz",
-                    "sha256":"1adeb5dc1a341ecd1fe858f4fa9e09027c1996f0f8d00c29f3f2d62aeff04dee",
-                    "size": 164189092
+                    "url":"https://downloads.firestormviewer.org/release/linux/Phoenix-FirestormOS-Releasex64-7-1-9-74745.tar.xz",
+                    "sha256":"2087e11268976406b809f8e16d2daeef11c7f3f8642c7d6c6a9e4506de986720",
+                    "size": 190763824
                 },
                 {
                     "type":"script",
@@ -168,8 +168,8 @@
                 },
                 {
                     "type":"file",
-                    "url":"https://vcs.firestormviewer.org/phoenix-firestorm-lgpl/raw/5e2050564bd3730f0ce7843860afdb25da3d2346/indra/newview/res/firestorm_icon.png",
-                    "sha256":"f51c4c1609d6fe1a75914f3644888816525524e641c2f2821436993921800390",
+                    "url":"https://raw.githubusercontent.com/FirestormViewer/phoenix-firestorm/master/indra/newview/skins/default/textures/firestorm_icon.png",
+                    "sha256":"a2e3ec61c05b675e2a256be463342ea2b18feefaf4434879d03ddd055f213b1b",
                     "dest-filename":"org.firestormviewer.FirestormViewer.png"
                 }
             ],
