@@ -139,7 +139,7 @@
                     "filename":"viewer.tar.xz",
                     "url":"https://downloads.firestormviewer.org/release/linux/Phoenix-Firestorm-Releasex64-7-1-10-75913.tar.xz",
                     "sha256":"286875e347de50d026356f9e62268dab333a443b3efc7749823e3c526b3e54ae",
-                    "size": 190763824
+                    "size": 199049540
                 },
                 {
                     "type":"script",
