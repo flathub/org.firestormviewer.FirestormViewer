@@ -14,7 +14,7 @@
     <p>This wrapper is not verified by, affiliated with, or supported by Linden Labs or the Firestorm Project.</p>
   </description>
   <url type="homepage">https://www.firestormviewer.org/</url>
-<url type="bugtracker">https://github.com/flathub/org.firestormviewer.FirestormViewer</url>
+  <url type="bugtracker">https://github.com/flathub/org.firestormviewer.FirestormViewer</url>
   <releases>
     <release version="7.1.11.76496" date="2024-10-22" />
     <release version="7.1.10.79513" date="2024-09-17" />
