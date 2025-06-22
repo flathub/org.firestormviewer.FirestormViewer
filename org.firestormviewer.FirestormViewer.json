@@ -24,7 +24,7 @@
         "--talk-name=org.freedesktop.secrets",
         "--own-name=com.secondlife.ViewerAppAPIService",
         "--env=LD_LIBRARY_PATH=/app/extra/lib/:/app/lib32/:/app/lib",
-        "--require-version=1.15.6"
+        "--require-version=1.16.0"
     ],
     "cleanup":[
         "/share/man",
