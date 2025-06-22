@@ -12,6 +12,7 @@
         "--share=network",
         "--allow=multiarch",
         "--device=dri",
+        "--device=input",
         "--filesystem=~/.firestorm_x64:create",
         "--filesystem=xdg-desktop",
         "--filesystem=xdg-documents",
@@ -22,7 +23,8 @@
         "--talk-name=org.freedesktop.Notifications",
         "--talk-name=org.freedesktop.secrets",
         "--own-name=com.secondlife.ViewerAppAPIService",
-        "--env=LD_LIBRARY_PATH=/app/extra/lib/:/app/lib32/:/app/lib"
+        "--env=LD_LIBRARY_PATH=/app/extra/lib/:/app/lib32/:/app/lib",
+        "--require-version=1.15.6"
     ],
     "cleanup":[
         "/share/man",
