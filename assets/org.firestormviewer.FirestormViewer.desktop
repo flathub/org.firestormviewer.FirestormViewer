@@ -9,4 +9,10 @@ Type=Application
 Terminal=false
 StartupWMClass=do-not-directly-run-firestorm-bin
 MimeType=x-scheme-handler/secondlife;
+PrefersNonDefaultGPU=true
+Actions=DefaultGPU;
+
+[Desktop Action DefaultGPU]
+Exec=env __GLX_VENDOR_LIBRARY_NAME="" firestorm-viewer %U
+Name=Launch on default GPU
 
