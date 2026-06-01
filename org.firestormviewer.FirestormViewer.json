@@ -19,8 +19,6 @@
         "--filesystem=xdg-download",
         "--filesystem=xdg-music",
         "--filesystem=xdg-pictures",
-        /* Needed for CEF*/
-        "--filesystem=/run/user",
         "--filesystem=xdg-run/app/com.discordapp.Discord:create",
         "--talk-name=org.freedesktop.Notifications",
         "--talk-name=org.freedesktop.secrets",
