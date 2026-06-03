@@ -11,7 +11,7 @@
         "--socket=pulseaudio",
         "--share=network",
         "--allow=multiarch",
-        "--device=dri",
+        "--device=all",
         "--filesystem=~/.firestorm_x64:create",
         "--filesystem=xdg-desktop",
         "--filesystem=xdg-documents",
@@ -103,9 +103,9 @@
                 {
                     "type":"extra-data",
                     "filename":"viewer.tar.xz",
-                    "url":"https://downloads.firestormviewer.org/preview/linux/Phoenix-Firestorm-Betax64_AVX2-7-2-4-80646.tar.xz",
-                    "sha256":"a333c4019d6877e13dd3205cdd15ffbaf847e18a8279016f122f7a17df6ec072",
-                    "size": 185275696
+                    "url":"https://downloads.firestormviewer.org/preview/linux/Phoenix-Firestorm-Betax64_AVX2-7-2-4-80712.tar.xz",
+                    "sha256":"a29b6d7c89a920b3689a9ade6717c37907d1bbae4db353cc9906543713432de9",
+                    "size": 185387492
                 },
                 {
                     "type":"script",
