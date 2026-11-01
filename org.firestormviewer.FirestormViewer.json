@@ -8,6 +8,7 @@
     "finish-args":[
         "--share=ipc",
         "--socket=x11",
+        "--socket=wayland",
         "--socket=pulseaudio",
         "--share=network",
         "--allow=multiarch",
@@ -66,9 +67,9 @@
                 {
                     "type":"extra-data",
                     "filename":"viewer.tar.xz",
-                    "url":"https://downloads.firestormviewer.org/release/linux/Phoenix-Firestorm-Releasex64_AVX2-7-2-4-80712.tar.xz",
-                    "sha256":"405fe8fc598494d71145a48e7feae3e1f02f7492f73017eeeba6fa077a5f21a8",
-                    "size": 185302052
+                    "url":"https://downloads.firestormviewer.org/release/linux/Phoenix-Firestorm-Releasex64_AVX2-7-2-5-81788.tar.xz",
+                    "sha256":"c9a0dbb1c4076f177ac2ff5e1b62d8fdc58254f04deb854baeb3520c53b5b3da",
+                    "size": 185556612
                 },
                 {
                     "type":"script",
@@ -97,9 +98,15 @@
                 },
                 {
                     "type":"file",
+                    "url":"https://raw.githubusercontent.com/FirestormViewer/phoenix-firestorm/master/indra/newview/res/firestorm_icon.png",
+                    "sha256":"f51c4c1609d6fe1a75914f3644888816525524e641c2f2821436993921800390",
+                    "dest-filename":"org.firestormviewer.FirestormViewer.png"
+                },
+                {
+                    "type":"file",
                     "url":"https://raw.githubusercontent.com/FirestormViewer/phoenix-firestorm/master/indra/newview/skins/default/textures/firestorm_icon.png",
                     "sha256":"a2e3ec61c05b675e2a256be463342ea2b18feefaf4434879d03ddd055f213b1b",
-                    "dest-filename":"org.firestormviewer.FirestormViewer.png"
+                    "dest-filename":"org.firestormviewer.FirestormViewer-128.png"
                 }
             ],
             "build-commands":[
@@ -108,6 +115,7 @@
                 "install -Dm755 firestorm-viewer $FLATPAK_DEST/bin/",
                 "install -Dm644 $FLATPAK_ID.desktop $FLATPAK_DEST/share/applications/$FLATPAK_ID.desktop",
                 "install -Dm644 $FLATPAK_ID.png $FLATPAK_DEST/share/icons/hicolor/512x512/apps/$FLATPAK_ID.png",
+                "install -Dm644 $FLATPAK_ID-128.png $FLATPAK_DEST/share/icons/hicolor/128x128/apps/$FLATPAK_ID.png",
                 "install -Dm644 $FLATPAK_ID.metainfo.xml $FLATPAK_DEST/share/metainfo/$FLATPAK_ID.metainfo.xml",
                 "mkdir $FLATPAK_DEST/lib/i386-linux-gnu"
             ]
