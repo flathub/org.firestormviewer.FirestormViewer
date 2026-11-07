@@ -98,8 +98,8 @@
                 },
                 {
                     "type":"file",
-                    "url":"https://raw.githubusercontent.com/FirestormViewer/phoenix-firestorm/master/indra/newview/skins/default/textures/firestorm_icon.png",
-                    "sha256":"a2e3ec61c05b675e2a256be463342ea2b18feefaf4434879d03ddd055f213b1b",
+                    "url":"https://raw.githubusercontent.com/FirestormViewer/phoenix-firestorm/master/indra/newview/icons/release/firestorm_512.png",
+                    "sha256":"524cf9af9817e9df5afd16c83599349287de63febe42d9874992ab523d8e08f7",
                     "dest-filename":"org.firestormviewer.FirestormViewer.png"
                 }
             ],
