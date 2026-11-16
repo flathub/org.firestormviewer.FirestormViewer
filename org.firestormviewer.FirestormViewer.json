@@ -7,7 +7,8 @@
     "separate-locales":false,
     "finish-args":[
         "--share=ipc",
-        "--socket=x11",
+        "--socket=fallback-x11",
+        "--socket=wayland",
         "--socket=pulseaudio",
         "--share=network",
         "--allow=multiarch",
@@ -22,7 +23,7 @@
         "--talk-name=org.freedesktop.Notifications",
         "--talk-name=org.freedesktop.secrets",
         "--own-name=com.secondlife.ViewerAppAPIService",
-        "--env=LD_LIBRARY_PATH=/app/extra/lib/:/app/lib"
+        "--env=LD_LIBRARY_PATH=/app/extra/lib/:/app/lib32/:/app/lib"
     ],
     "cleanup":[
         "/share/man",
@@ -58,44 +59,6 @@
                 }
             ]
         },
-        {
-            "name":"libgnome-keyring",
-            "config-opts":[
-                "--disable-static",
-                "--disable-gtk-doc",
-                "--disable-coverage",
-                "--disable-introspection"
-            ],
-            "sources":[
-                {
-                    "type":"archive",
-                    "url":"https://download.gnome.org/sources/libgnome-keyring/3.12/libgnome-keyring-3.12.0.tar.xz",
-                    "sha256":"c4c178fbb05f72acc484d22ddb0568f7532c409b0a13e06513ff54b91e947783"
-                },
-                {
-                    "type":"shell",
-                    "commands":[
-                        "GTKDOCIZE=echo autoreconf -fi"
-                    ]
-                }
-            ]
-        },
-        //{
-        //    "name":"ubuntu-libcypto",
-        //    "buildsystem":"simple",
-        //    "sources":[
-        //        {
-        //            "type":"file",
-        //            "url":"http://mirrors.edge.kernel.org/ubuntu/pool/main/libx/libxcrypt/libcrypt1_4.4.27-1_amd64.deb",
-        //            "sha256":"3fa566e9f861a08736cbc5a97562d9d6e4f0c00450fbeafcb6d7583423b04a98"
-        //        }
-        //    ],
-        //    "build-commands":[
-        //          "ar x libcrypt1_4.4.27-1_amd64.deb",
-        //          "tar -xvf data.tar.zst",
-        //           "cp lib/x86_64-linux-gnu/* /app/lib/"
-        //    ]
-        //},
         {
             "name":"firestorm",
             "buildsystem":"simple",
@@ -144,7 +107,7 @@
                 "install launch_url.sh /app/etc/",
                 "install -Dm755 firestorm-viewer $FLATPAK_DEST/bin/",
                 "install -Dm644 $FLATPAK_ID.desktop $FLATPAK_DEST/share/applications/$FLATPAK_ID.desktop",
-                "install -Dm644 $FLATPAK_ID.png $FLATPAK_DEST/share/icons/hicolor/128x128/apps/$FLATPAK_ID.png",
+                "install -Dm644 $FLATPAK_ID.png $FLATPAK_DEST/share/icons/hicolor/512x512/apps/$FLATPAK_ID.png",
                 "install -Dm644 $FLATPAK_ID.metainfo.xml $FLATPAK_DEST/share/metainfo/$FLATPAK_ID.metainfo.xml"
             ]
         }
